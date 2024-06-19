@@ -1,26 +1,39 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
+import { Dimensions } from "react-native";
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+const {height, width} = Dimensions.get("window");
 
-export const Colors = {
-  light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
-  },
-};
+export const COLORS = {
+    red: "#eb6a58",
+    green: "#449282",
+    blue: "#4267b2",
+    white: "#fbfbfb",
+    lightRed: "#eb9c98",
+    lightGreen: "#73ada1",
+    lightBlue: "#6885c1",
+    lightWhite: "#ffffff",
+    black: "#121212",
+    dark: "#3d3a45",
+    gray: "#8c8896",
+    lightGray: "#d1cfd5",
+}
+
+export const SIZES = {
+    xSmall: 10,
+    small: 12,
+    medium: 16,
+    large: 20,
+    xLarge: 24,
+    xxLarge: 44,
+    width: width,
+    height: height,
+}
+
+export const TEXT = {
+    xxSmall: 11,
+    xSmall: 13,
+    small: 15,
+    medium: 17,
+    large: 21,
+    xLarge: 27,
+    xxLarge: 32,
+}
