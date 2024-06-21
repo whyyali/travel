@@ -4,6 +4,7 @@ import ImageBox from './ImageBox'
 import ReusableText from './ReusableText'
 import { COLORS, SIZES } from '@/constants/Colors'
 import { imagePlaces, imageHotels } from "../images"
+import Rating from './Rating'
 
 type ReusableTileProps = {
     item: {
@@ -30,7 +31,7 @@ const ReusableTile: React.FC<ReusableTileProps> = ({ item, onPress }) => {
                     <ReusableText text={item.location} family={"300"} color={COLORS.gray} size={14} />
                     <View style={{ height: 8 }} />
                     <View style={styles.containerRow}>
-                        {/* <Rating rating={item.rating} /> */}
+                        <Rating rating={item.rating} />
                         <View style={{ width: 5 }} />
                         <ReusableText text={`(${item.review}) `} family={"300"} color={COLORS.gray} size={14} />
                     </View>

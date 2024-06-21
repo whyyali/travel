@@ -1,6 +1,6 @@
-import { Places , Recommendations, ReusableText} from '@/components'
+import { BestHotel, Places , Recommendations, ReusableText} from '@/components'
 import { COLORS, SIZES, TEXT } from '@/constants/Colors'
-import { AntDesign } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -12,7 +12,7 @@ const Home = () => {
         <View style={styles.containerRow}>
           <ReusableText text='Hi User!' family={400} size={TEXT.large} color={COLORS.black} />
           <TouchableOpacity onPress={() => { }} style={styles.searchBox}>
-            <AntDesign name='search1' size={26} />
+            <Ionicons name='search' size={26} />
           </TouchableOpacity>
         </View>
 
@@ -28,7 +28,7 @@ const Home = () => {
 
         <View style={{ height: 15 }} />
 
-        {/* <BestHotel /> */}
+        <BestHotel />
 
       </View>
     </SafeAreaView>

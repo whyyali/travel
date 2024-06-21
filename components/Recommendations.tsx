@@ -2,7 +2,7 @@ import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View, 
 import React from 'react'
 import { COLORS, SIZES, TEXT } from '@/constants/Colors'
 import ReusableText from './ReusableText'
-import { Feather } from '@expo/vector-icons'
+import { Feather, Ionicons } from '@expo/vector-icons'
 import { useFetchRecommendations } from '../data/fetchData'
 import ReusableTile from './ReusableTile'
 
@@ -31,7 +31,7 @@ const Recommendations = () => {
             <View style={[styles.containerRow, { paddingBottom: 20 }]}>
                 <ReusableText text={"Recommendation"} family={"medium"} size={TEXT.large} color={COLORS.black} />
                 <TouchableOpacity onPress={() => {}}>
-                    <Feather name='list' size={20} />
+                    <Ionicons name='list' size={20} />
                 </TouchableOpacity>
             </View>
 
