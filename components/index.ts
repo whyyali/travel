@@ -7,7 +7,8 @@ import Recommendations from "./Recommendations";
 import ReusableTile from "./ReusableTile";
 import Rating from "./Rating";
 import BestHotel from "./BestHotel";
+import HotelCard from "./HotelCard";
 
 export {
-    Places, ReusableText, ReusableButton, Country, ImageBox, Recommendations, ReusableTile, Rating, BestHotel
+    Places, ReusableText, ReusableButton, Country, ImageBox, Recommendations, ReusableTile, Rating, BestHotel, HotelCard
 }

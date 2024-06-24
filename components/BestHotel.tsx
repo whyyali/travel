@@ -1,10 +1,10 @@
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, FlatList, StyleSheet, Text, View , TouchableOpacity} from 'react-native'
 import React from 'react'
 import { useFetchHotels } from "../data/fetchData"
 import ReusableText from './ReusableText';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, SIZES, TEXT } from '@/constants/Colors';
+import HotelCard from './HotelCard';
 
 const BestHotel = () => {
   const { hotels, isLoading } = useFetchHotels();
@@ -30,8 +30,7 @@ const BestHotel = () => {
           contentContainerStyle={{ columnGap: SIZES.medium }}
           renderItem={({ item }) => (
             <View>
-              <ReusableText text={item.title} />
-              {/* <HotelCard item={item} margin={10} onPress={() => {}} /> */}
+              <HotelCard item={item} margin={10} onPress={() => {}} />
             </View>
           )}
         />
@@ -43,7 +42,7 @@ const BestHotel = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     alignItems: "center"
   }
 })
