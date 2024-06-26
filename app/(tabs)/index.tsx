@@ -3,15 +3,17 @@ import { COLORS, SIZES, TEXT } from '@/constants/Colors'
 import { Ionicons } from '@expo/vector-icons'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useRouter } from 'expo-router'
 
 const Home = () => {
+  const router = useRouter()
   return (
     <SafeAreaView style={styles.container}>
       <View>
 
         <View style={styles.containerRow}>
           <ReusableText text='Hi User!' family={400} size={TEXT.large} color={COLORS.black} />
-          <TouchableOpacity onPress={() => { }} style={styles.searchBox}>
+          <TouchableOpacity onPress={() => router.push("Search")} style={styles.searchBox}>
             <Ionicons name='search' size={26} />
           </TouchableOpacity>
         </View>
