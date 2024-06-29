@@ -6,6 +6,7 @@ export default function RootLayout(){
             <Stack.Screen name="onBoarding" options={{ headerShown: false }} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="Search" options={{ headerShown: false}} />
+            <Stack.Screen name="CountryDetail" options={{ headerShown: false}} />
         </Stack>
     )
 }
