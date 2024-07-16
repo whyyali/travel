@@ -3,10 +3,10 @@ import * as Yup from "yup";
 import { Formik, FormikHelpers } from 'formik';
 import { useState } from 'react';
 import { COLORS, SIZES } from '@/constants/theme';
-import { ReusableButton } from '..';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { BACKEND_URL } from '@env';
 import { router } from 'expo-router';
+import ReusableButton from '../resuable/button';
 
 interface FormValues {
     email: string;

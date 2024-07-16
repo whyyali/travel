@@ -18,7 +18,7 @@ module.exports = {
 
     getCountries: async (req, res, next) => {
         try {
-            const countries = await Country.find({}, { country: 1, _id: 1, image: 1,})
+            const countries = await Country.find({}, { country: 1, _id: 1, image: 1, description: 1, region: 1})
 
             res.status(200).json({ countries })
         } catch (error) {
@@ -65,5 +65,41 @@ module.exports = {
         } catch (error) {
             return next(error)
         }
-    }
+    },
+
+    updateCountry: async (req, res, next) => {
+        const countryId = req.params.id;
+        const { country, description, image, region, popular } = req.body;
+
+        try {
+            const updatedCountry = await Country.findByIdAndUpdate(
+                countryId,
+                { country, description, image, region, popular },
+                { new: true }
+            );
+
+            if (!updatedCountry) {
+                return res.status(404).json({ message: "Country not found" });
+            }
+
+            res.status(200).json({ status: true, country: updatedCountry });
+        } catch (error) {
+            return next(error);
+        }
+    },
+
+    deleteCountry: async (req, res, next) => {
+        const countryId = req.params.id || req.body._id;
+        try {
+            const deletedCountry = await Country.findByIdAndDelete(countryId);
+
+            if (!deletedCountry) {
+                return res.status(404).json({ message: "Country not found" });
+            }
+
+            res.status(200).json({ status: true, message: "Country deleted successfully" });
+        } catch (error) {
+            return next(error);
+        }
+    },
 }

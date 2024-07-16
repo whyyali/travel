@@ -11,7 +11,7 @@ type Props = {
     borderWidth?: number
 }
 
-const Button = ({ onPress, title, textColor, width, bgColor, borderColor, borderWidth }: Props) => {
+const ReusableButton = ({ onPress, title, textColor, width, bgColor, borderColor, borderWidth }: Props) => {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.button, { backgroundColor: bgColor, borderColor: borderColor, borderWidth: borderWidth, width: width }]}>
             <Text style={[styles.buttonText, { color: textColor }]}>{title}</Text>
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Button
+export default ReusableButton

@@ -1,7 +1,8 @@
 import { COLORS, SIZES, TEXT } from '@/constants/theme';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { ReusableButton, ReusableText } from '.';
 import { router } from 'expo-router';
+import ReusableText from './resuable/text';
+import ReusableButton from './resuable/button';
 
 type Props = {
     item: {

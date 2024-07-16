@@ -4,9 +4,9 @@ import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { COLORS, SIZES } from '@/constants/theme';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { ReusableButton } from '..';
 import { BACKEND_URL } from "@env";
 import { router } from 'expo-router';
+import ReusableButton from '../resuable/button';
 
 interface FormValues {
     email: string;
