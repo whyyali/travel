@@ -1,10 +1,12 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import * as Yup from "yup";
 import { Formik, FormikHelpers } from 'formik';
 import { useState } from 'react';
 import { COLORS, SIZES } from '@/constants/theme';
 import { ReusableButton } from '..';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { BACKEND_URL } from '@env';
+import { router } from 'expo-router';
 
 interface FormValues {
     email: string;
@@ -18,7 +20,28 @@ const validationSchema = Yup.object().shape({
 
 const handleLogin = async (values: FormValues, resetForm: () => void) => {
     const { email, password } = values;
-    // here we connect the backend 
+    try {
+        const response = await fetch(`${BACKEND_URL}/api/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+
+        if (data.status) {
+            Alert.alert('Login Successful', 'Welcome back!', [{ text: 'OK' }]);
+            router.navigate("(tab)/home")
+            resetForm();
+        } else {
+            console.log("Login Failed", data.message)
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+        Alert.alert('Error', 'An error occurred during login. Please try again.', [{ text: 'OK' }]);
+    }
   };
 
 const Login = () => {

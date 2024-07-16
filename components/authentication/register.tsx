@@ -1,10 +1,12 @@
-import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { COLORS, SIZES } from '@/constants/theme';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { ReusableButton } from '..';
+import { BACKEND_URL } from "@env";
+import { router } from 'expo-router';
 
 interface FormValues {
     email: string;
@@ -19,8 +21,29 @@ const validationSchema = Yup.object().shape({
 })
 
 const handleRegistration = async (values: FormValues, resetForm: () => void) => {
-    const { email, password } = values;
-    // here we connect the backend 
+    const { email, password, username } = values;
+    const profile = require("@/assets/images/user.png")
+    try {
+        const response = await fetch(`${BACKEND_URL}/api/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password, username, profile }),
+        });
+        const data = await response.json();
+        if (data.status) {
+            Alert.alert('Register Successful', 'Welcome!', [{ text: 'OK' }]);
+            router.navigate("(tab)/home")
+            resetForm();
+        } else {
+            console.log(data.message)
+            alert(data.message);
+        }
+    } catch (error) {
+        console.error('Error during registration:', error);
+        alert('An error occurred during registration. Please try again.');
+    }
   };
 
 const Register = () => {
