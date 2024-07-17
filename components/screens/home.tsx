@@ -4,6 +4,7 @@ import { COLORS, SIZES, TEXT } from '@/constants/theme';
 import { AntDesign } from '@expo/vector-icons';
 import ReusableText  from '../resuable/text';
 import { Besthotels, Places, Recommendations } from '../home';
+import { router } from 'expo-router';
 
 const Home = () => {
     return (
@@ -11,7 +12,7 @@ const Home = () => {
             <View>
                 <View style={styles.wrapper}>
                     <ReusableText text='Hi User!' size={TEXT.large} color={COLORS.black} family={400}/>
-                    <TouchableOpacity style={styles.icon} onPress={() => {}}>
+                    <TouchableOpacity style={styles.icon} onPress={() => {router.navigate("(search)/search")}}>
                         <AntDesign name='search1' size={26}/>
                     </TouchableOpacity>
                 </View>

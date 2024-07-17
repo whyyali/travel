@@ -6,7 +6,7 @@ import Rating from '../rating'
 
 type TileProps = {
   item: {
-    _id: any,
+    _id: string,
     title: string,
     location: string,
     rating: string | number,

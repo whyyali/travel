@@ -1,10 +1,19 @@
 import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import ReusableText from '../resuable/text'
 import { Feather } from '@expo/vector-icons'
 import { COLORS, SIZES, TEXT } from '@/constants/theme'
 import { useFetchHotels } from "@/data/fetchData"
+import { router } from 'expo-router'
 import HotelCard from '../hotel/hotelCard'
+import ReusableText from '../resuable/text'
+
+interface Item {
+    _id: string,
+    title: string,
+    location: string,
+    rating: string | number,
+    review: string | number,
+    image: any
+}
 
 const Besthotels= () => {
     const { hotels, isLoading } = useFetchHotels();
@@ -13,7 +22,7 @@ const Besthotels= () => {
         <View style={styles.container}>
             <View style={[styles.wrapper, { paddingBottom: 20 }]}>
                 <ReusableText text={"Best Hotels"} family={"medium"} size={TEXT.large} color={COLORS.black} />
-                <TouchableOpacity onPress={() => { }}>
+                <TouchableOpacity onPress={() => {router.navigate("(search)/hotelList")}}>
                     <Feather name='list' size={20} />
                 </TouchableOpacity>
             </View>
@@ -25,7 +34,7 @@ const Besthotels= () => {
                 data = { hotels }
                 horizontal
                 showsHorizontalScrollIndicator = { false }
-                keyExtractor = { (item) => item._id}
+                keyExtractor = { (item: Item) => item._id}
                 contentContainerStyle = {{ columnGap: SIZES.medium }}
                 renderItem={({ item }) => (
                 <View>

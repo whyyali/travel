@@ -4,6 +4,16 @@ import { Feather } from '@expo/vector-icons'
 import { useFetchRecommendations } from "@/data/fetchData"
 import ReusableText from '../resuable/text'
 import ReusableTile from '../resuable/tile'
+import { router } from 'expo-router'
+
+interface Item {
+    _id: string,
+    title: string,
+    location: string,
+    rating: string | number,
+    review: string | number,
+    image: any
+}
 
 const Recommendations = () => {
     const { recommendations, isLoading } = useFetchRecommendations();
@@ -12,7 +22,7 @@ const Recommendations = () => {
         <View style={styles.container}>
             <View style={[styles.wrapper, { paddingBottom: 20 }]}>
                 <ReusableText text={"Recommendations"} family={"medium"} size={TEXT.large} color={COLORS.black} />
-                <TouchableOpacity onPress={() => { }}>
+                <TouchableOpacity onPress={() => {router.navigate("(search)/recommedations")}}>
                     <Feather name='list' size={20} />
                 </TouchableOpacity>
             </View>
@@ -23,7 +33,7 @@ const Recommendations = () => {
                     data={recommendations}
                     horizontal
                     showsHorizontalScrollIndicator = {false}
-                    keyExtractor={(item) =>  item._id}
+                    keyExtractor={(item: Item) =>  item._id}
                     contentContainerStyle = {{columnGap: SIZES.medium}}
                     renderItem={({item}) => (
                         <View>
