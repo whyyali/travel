@@ -2,11 +2,11 @@ const Place = require("../models/Place");
 
 module.exports = {
     addPlaces: async (req, res, next) => {
-        const { country_id, description, image, location, title, review, rating, latitude, longitude, } = req.body;
+        const { country_id, country, description, image, location, title, review, rating, latitude, longitude, } = req.body;
 
         try {
             const newPlace = new Place({
-                country_id, description, image, location, title, review, rating, latitude, longitude
+                country_id, country, description, image, location, title, review, rating, latitude, longitude
             })
             await newPlace.save()
 
@@ -18,7 +18,7 @@ module.exports = {
 
     getPlaces: async (req, res, next) => {
         try {
-            const places = await Place.find({}, '_id review rating image title country_id location description')
+            const places = await Place.find({}, '_id review rating image title country_id location description latitude longitude country')
 
             res.status(201).json({ places })
         } catch (error) {
@@ -56,5 +56,38 @@ module.exports = {
         }
     },
 
+    updatePlace: async (req, res, next) => {
+        const placeId = req.params.id;
+        const { country_id, country, description, image, location, title, review, rating, latitude, longitude } = req.body;
 
+        try {
+            const updatedPlace = await Place.findByIdAndUpdate(placeId, {
+                country_id, country, description, image, location, title, review, rating, latitude, longitude
+            }, { new: true });
+
+            if (!updatedPlace) {
+                return res.status(404).json({ message: "Place not found" });
+            }
+
+            res.status(200).json({ status: true, place: updatedPlace });
+        } catch (error) {
+            return next(error);
+        }
+    },
+
+    deletePlace: async (req, res, next) => {
+        const placeId = req.params.id;
+
+        try {
+            const deletedPlace = await Place.findByIdAndDelete(placeId);
+
+            if (!deletedPlace) {
+                return res.status(404).json({ message: "Place not found" });
+            }
+
+            res.status(200).json({ status: true });
+        } catch (error) {
+            return next(error);
+        }
+    }
 }

@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS, SIZES, TEXT } from '@/constants/theme';
 import { AntDesign } from '@expo/vector-icons';
 import ReusableText  from '../resuable/text';
-import Places from '../home/places';
+import { Besthotels, Places, Recommendations } from '../home';
 
 const Home = () => {
     return (
@@ -24,11 +24,11 @@ const Home = () => {
 
                 <View style={{height: 15}} />
 
-                {/* Recommendations */}
+                <Recommendations />
 
                 <View style={{height: 15}} />
 
-                {/* Best Hotels */}
+                <Besthotels />
 
             </View>
         </SafeAreaView>

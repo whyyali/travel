@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const hotelSchema = new mongoose.Schema({
     country_id: {type: String, require: true},
+    country: {type: String, require: true},
     description: {type: String, require: true},
     image: {type: String, require: true},
     location: {type: String, require: true},

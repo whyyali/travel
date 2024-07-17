@@ -2,9 +2,9 @@ const Hotel = require("../models/Hotel");
 
 module.exports = {
     addHotel: async (req, res, next) => {
-        const { country_id, description, image, title, review, availability, coordinates, facilities, rating, price, contact, location } = req.body;
+        const { country_id, description, country, image, title, review, availability, coordinates, facilities, rating, price, contact, location } = req.body;
         try {
-            const newHotel = new Hotel({ country_id, description, image, title, review, availability, coordinates, facilities, rating, price, contact, location })
+            const newHotel = new Hotel({ country_id, country, description, image, title, review, availability, coordinates, facilities, rating, price, contact, location })
 
             await newHotel.save();
 
@@ -16,7 +16,7 @@ module.exports = {
 
     getHotels: async (req, res, next) => {
         try {
-            const hotels = await Hotel.find({}, '_id rating review image title country_id location')
+            const hotels = await Hotel.find({}, '_id review image title country_id location description country availability coordinates facilities rating price contact')
 
             res.status(201).json({ hotels })
         } catch (error) {
@@ -67,5 +67,40 @@ module.exports = {
             return next(error)
         }
     },
+
+    updateHotel: async (req, res, next) => {
+        const hotelId = req.params.id;
+        const { country_id, description, country, image, title, review, availability, coordinates, facilities, rating, price, contact, location } = req.body;
+
+        try {
+            const updatedHotel = await Hotel.findByIdAndUpdate(hotelId, {
+                country_id, description, country, image, title, review, availability, coordinates, facilities, rating, price, contact, location
+            }, { new: true });
+
+            if (!updatedHotel) {
+                return res.status(404).json({ message: "Hotel not found" });
+            }
+
+            res.status(200).json({ status: true, hotel: updatedHotel });
+        } catch (error) {
+            return next(error);
+        }
+    },
+
+    deleteHotel: async (req, res, next) => {
+        const hotelId = req.params.id;
+
+        try {
+            const deletedHotel = await Hotel.findByIdAndDelete(hotelId);
+
+            if (!deletedHotel) {
+                return res.status(404).json({ message: "Hotel not found" });
+            }
+
+            res.status(200).json({ status: true });
+        } catch (error) {
+            return next(error);
+        }
+    }
 
 }
