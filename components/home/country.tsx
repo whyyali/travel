@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { COLORS, TEXT } from '@/constants/theme'
 import ReusableImage from '../resuable/image'
 import ReusableText from '../resuable/text'
+import { router } from 'expo-router'
 
 type CountryProps ={
   item: {
@@ -15,7 +16,7 @@ type CountryProps ={
 
 const Country = ({item}: CountryProps) => {
   return (
-    <TouchableOpacity onPress={() => {}}>
+    <TouchableOpacity onPress={() => {router.push({pathname:"(details)/countryDetails", params: {item: JSON.stringify(item)} })}}>
       <View>
         <ReusableImage source={item.image} height={90} width={90} radius={12} />
         <View style={{height: 5}}/>

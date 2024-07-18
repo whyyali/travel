@@ -103,6 +103,28 @@ export const useFetchHotels = () => {
     return { hotels, isLoading };
 }
 
+export const useFetchHotelByCountryId = (id) =>{
+    const [hotels, setHotels] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/hotels/byCountry/${id}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setHotels(data);
+                 }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, [id]);
+
+    return {hotels}
+}
+
 export const useFetchHotelById = (id) => {
     const [hotel, setHotel] = useState([]);
     const [hotelAvailabilityStart, setHotelAvailabilityStart] = useState("");

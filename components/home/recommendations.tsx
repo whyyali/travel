@@ -37,7 +37,7 @@ const Recommendations = () => {
                     contentContainerStyle = {{columnGap: SIZES.medium}}
                     renderItem={({item}) => (
                         <View>
-                            <ReusableTile item={item} onPress={() => {}}/>
+                            <ReusableTile item={item} onPress={() => {router.push({pathname: "(details)/placeDetails", params:{item: JSON.stringify(item)}})}}/>
                         </View>
                     )}
                 />

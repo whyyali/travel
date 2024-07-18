@@ -20,7 +20,7 @@ const HotelList = () => {
     return (
         <SafeAreaView style={{ marginHorizontal: 20 }}>
             <View style={{ height: 50 }}>
-                <ReusableBar title={"Nearby Hotels"} bgColor={COLORS.white} bgColor1={COLORS.white} onPressBack={() => {router.back()}} onPressSearch={() => {router.navigate("(search)/hotelSearch")}} />
+                <ReusableBar title={"Nearby Hotels"} bgColor={COLORS.white} bgColor1={COLORS.white} onPressBack={() => {router.back()}} onPressSearch={() => {router.navigate("(search)/findHotels")}} />
             </View>
 
             <View style={{ paddingTop: 10 }}>
@@ -34,7 +34,7 @@ const HotelList = () => {
                         contentContainerStyle={{ paddingBottom: 100 }}
                         renderItem={({ item }) => (
                             <View style={{ marginBottom: 10 }}>
-                                <ReusableTile item={item} onPress={() => {}} />
+                                <ReusableTile item={item} onPress={() => {router.push({pathname: "(details)/hotelDetails", params:{item: JSON.stringify(item)}})}} />
                             </View>
                     )} />
                 )}

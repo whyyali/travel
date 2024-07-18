@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { useFetchRecommendations } from "@/data/fetchData"
+import { useFetchHotels } from "@/data/fetchData"
+import { COLORS, SIZES } from '@/constants/theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AntDesign, Feather } from '@expo/vector-icons';
-import { COLORS, SIZES } from '@/constants/theme';
 import { router } from 'expo-router';
 import ReusableTile from '@/components/resuable/tile';
 
-interface Place {
-    title: any
+interface Hotel {
+    title: string
 }
 
 interface Item {
@@ -20,27 +20,27 @@ interface Item {
     image: any
 }
 
-const Search = () => {
+const FindHotels = () => {
     const [searchKey, setSearchKey] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [isNotFound, setIsNotFound] = useState(false);
 
-    const { recommendations: places } = useFetchRecommendations();
+
+    const { hotels } = useFetchHotels();
 
     const handleSearch = () => {
-        const filteredResults = places.filter((place: Place) =>
-            place.title.toLowerCase().includes(searchKey.toLowerCase())
+        const filteredResults = hotels.filter((hotel: Hotel) =>
+            hotel.title.toLowerCase().includes(searchKey.toLowerCase())
         );
 
         setSearchResults(filteredResults);
         setIsNotFound(filteredResults.length === 0 && searchKey !== "");
     };
 
-
     return (
         <SafeAreaView style={{ marginHorizontal: 20 }}>
             <View style={styles.container}>
-                <TouchableOpacity style={styles.button} onPress={()=> router.back()}>
+                <TouchableOpacity style={styles.button} onPress={() => router.back()}>
                     <AntDesign name='left' size={24} />
                 </TouchableOpacity>
                 <View style={styles.wrapper}>
@@ -67,25 +67,24 @@ const Search = () => {
                         contentContainerStyle={{ paddingBottom: 80 }}
                         renderItem={({ item }) => (
                             <View style={styles.tile}>
-                                <ReusableTile item={item} onPress={() => {router.push({pathname: "(details)/placeDetails", params:{item: JSON.stringify(item)}})}} />
+                                <ReusableTile item={item} onPress={() => {router.push({pathname: "(details)/hotelDetails", params:{item: JSON.stringify(item)}})} } />
                             </View>
                         )}
                     />
                 ) : (
                     <FlatList
-                        data={places}
+                        data={hotels}
                         keyExtractor={(item: Item) => item._id}
                         showsVerticalScrollIndicator={false}
                         contentContainerStyle={{ paddingBottom: 80 }}
                         renderItem={({ item }) => (
                             <View style={styles.tile}>
-                                <ReusableTile item={item} onPress={() => {router.push({pathname: "(details)/placeDetails", params:{item: JSON.stringify(item)}}) }} />
+                                <ReusableTile item={item} onPress={() => {router.push({pathname: "(details)/hotelDetails", params:{item: JSON.stringify(item)}}) }} />
                             </View>
                         )}
                     />
                 )
             )}
-
         </SafeAreaView>
     )
 }
@@ -143,4 +142,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Search
+export default FindHotels

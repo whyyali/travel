@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { useFetchHotels } from "@/data/fetchData"
+import { useFetchHotelByCountryId } from "@/data/fetchData"
 import { COLORS, SIZES } from '@/constants/theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AntDesign, Feather } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { router , useLocalSearchParams } from 'expo-router';
 import ReusableTile from '@/components/resuable/tile';
 
 interface Hotel {
@@ -25,7 +25,10 @@ const HotelSearch = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [isNotFound, setIsNotFound] = useState(false);
 
-    const { hotels } = useFetchHotels();
+    const { id } = useLocalSearchParams();
+    const cId = JSON.parse(id as string);
+
+    const { hotels } = useFetchHotelByCountryId(cId);
 
     const handleSearch = () => {
         const filteredResults = hotels.filter((hotel: Hotel) =>
@@ -66,7 +69,7 @@ const HotelSearch = () => {
                         contentContainerStyle={{ paddingBottom: 80 }}
                         renderItem={({ item }) => (
                             <View style={styles.tile}>
-                                <ReusableTile item={item} onPress={() => { }} />
+                                <ReusableTile item={item} onPress={() => {router.push({pathname: "(details)/hotelDetails", params:{item: JSON.stringify(item)}}) }} />
                             </View>
                         )}
                     />
@@ -78,7 +81,7 @@ const HotelSearch = () => {
                         contentContainerStyle={{ paddingBottom: 80 }}
                         renderItem={({ item }) => (
                             <View style={styles.tile}>
-                                <ReusableTile item={item} onPress={() => { }} />
+                                <ReusableTile item={item} onPress={() => {router.push({pathname: "(details)/hotelDetails", params:{item: JSON.stringify(item)}}) }} />
                             </View>
                         )}
                     />

@@ -3,6 +3,14 @@ import { useFetchAllCountries } from "@/data/fetchData";
 import { SIZES } from '@/constants/theme';
 import Country from './country';
 
+interface CountryProps {
+    _id: string,
+    country: string,
+    image: any,
+    description: string,
+    region: string
+}
+
 const Places = () => {
     const { countries, isLoading } = useFetchAllCountries();
     return (
@@ -14,7 +22,7 @@ const Places = () => {
                 <VirtualizedList
                     data={countries}
                     horizontal
-                    keyExtractor={(item) => item._id}
+                    keyExtractor={(item: CountryProps) => item._id}
                     showsHorizontalScrollIndicator={false}
                     getItemCount={(data) => data.length}
                     getItem={(data, index) => data[index]}

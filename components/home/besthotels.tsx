@@ -38,7 +38,7 @@ const Besthotels= () => {
                 contentContainerStyle = {{ columnGap: SIZES.medium }}
                 renderItem={({ item }) => (
                 <View>
-                    <HotelCard item={item} margin={10} onPress={() => {}} />
+                    <HotelCard item={item} margin={10} onPress={() => {router.push({pathname: ("(details)/hotelDetails"), params: {item: JSON.stringify(item)}})}} />
                 </View>
                 )}
             />
