@@ -5,24 +5,9 @@ import ReusableImage from '../resuable/image'
 import ReusableText from '../resuable/text'
 import ReusableComment from '../resuable/comment'
 import Star from '../star'
-
-type ReviewProps = {
-    review: {
-        _id: string,
-        place: string,
-        review: string,
-        rating: number,
-        user: {
-            username: string,
-            profile: any,
-        }
-        updatedAt: any
-    }
-
-}
+import { ReviewProps } from '@/utils/utils'
 
 const ReviewTile = ({ review }: ReviewProps) => {
-    // console.log(review.user.profile)
 
     const formatDate = (value: any) => {
         const months = [

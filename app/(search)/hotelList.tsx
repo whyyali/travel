@@ -5,15 +5,7 @@ import { COLORS } from '@/constants/theme'
 import { router } from 'expo-router'
 import ReusableBar from '@/components/resuable/bar'
 import ReusableTile from '@/components/resuable/tile'
-
-interface Item {
-    _id: string,
-    title: string,
-    location: string,
-    rating: string | number,
-    review: string | number,
-    image: any
-}
+import { Item } from '@/utils/utils'
 
 const HotelList = () => {
     const { hotels, isLoading } = useFetchHotels();

@@ -5,15 +5,7 @@ import { useFetchRecommendations } from "@/data/fetchData"
 import ReusableText from '../resuable/text'
 import ReusableTile from '../resuable/tile'
 import { router } from 'expo-router'
-
-interface Item {
-    _id: string,
-    title: string,
-    location: string,
-    rating: string | number,
-    review: string | number,
-    image: any
-}
+import { Item } from '@/utils/utils'
 
 const Recommendations = () => {
     const { recommendations, isLoading } = useFetchRecommendations();

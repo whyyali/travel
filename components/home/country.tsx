@@ -3,16 +3,7 @@ import { COLORS, TEXT } from '@/constants/theme'
 import ReusableImage from '../resuable/image'
 import ReusableText from '../resuable/text'
 import { router } from 'expo-router'
-
-type CountryProps ={
-  item: {
-    _id: string,
-    country: string,
-    image: any,
-    description: string,
-    region: string
-  }
-}
+import { CountryProps } from '@/utils/utils'
 
 const Country = ({item}: CountryProps) => {
   return (

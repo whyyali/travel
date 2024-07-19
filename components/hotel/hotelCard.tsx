@@ -3,15 +3,10 @@ import { COLORS, SIZES } from '@/constants/theme'
 import ReusableImage from '../resuable/image'
 import ReusableText from '../resuable/text'
 import Rating from '../rating'
+import { Item } from '@/utils/utils'
 
 type HotelProps = {
-    item: {
-        _id: any,
-        image: any,
-        location: string,
-        title: string,
-        rating: number | string,
-    }
+    item: Item,
     onPress: () => void,
     margin: number | any,
 }

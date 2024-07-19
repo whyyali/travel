@@ -5,15 +5,7 @@ import { useFetchHotels } from "@/data/fetchData"
 import { router } from 'expo-router'
 import HotelCard from '../hotel/hotelCard'
 import ReusableText from '../resuable/text'
-
-interface Item {
-    _id: string,
-    title: string,
-    location: string,
-    rating: string | number,
-    review: string | number,
-    image: any
-}
+import { Item } from '@/utils/utils'
 
 const Besthotels= () => {
     const { hotels, isLoading } = useFetchHotels();

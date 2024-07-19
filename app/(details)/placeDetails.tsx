@@ -11,18 +11,7 @@ import ReusableText from '@/components/resuable/text'
 import ReusableDescription from '@/components/resuable/description'
 import ReusableButton from '@/components/resuable/button'
 import PopularList from '@/components/popular'
-
-interface Place {
-    _id: string,
-    title: string,
-    location: string,
-    rating: string | number,
-    review: string | number,
-    country: string,
-    image: any,
-    description: string,
-    country_id: string,
-}
+import { Place } from "@/utils/utils"
 
 const PlaceDetails = () => {
     const { item } = useLocalSearchParams();

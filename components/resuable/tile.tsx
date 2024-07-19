@@ -3,16 +3,10 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import ReusableImage from './image'
 import ReusableText from './text'
 import Rating from '../rating'
+import { Item } from '@/utils/utils'
 
 type TileProps = {
-  item: {
-    _id: string,
-    title: string,
-    location: string,
-    rating: string | number,
-    review: string | number,
-    image: any
-  },
+  item: Item,
   onPress: () => void,
 }
 

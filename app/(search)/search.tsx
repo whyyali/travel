@@ -6,19 +6,7 @@ import { AntDesign, Feather } from '@expo/vector-icons';
 import { COLORS, SIZES } from '@/constants/theme';
 import { router } from 'expo-router';
 import ReusableTile from '@/components/resuable/tile';
-
-interface Place {
-    title: any
-}
-
-interface Item {
-    _id: string,
-    title: string,
-    location: string,
-    rating: string | number,
-    review: string | number,
-    image: any
-}
+import { Item, Place } from '@/utils/utils';
 
 const Search = () => {
     const [searchKey, setSearchKey] = useState("");

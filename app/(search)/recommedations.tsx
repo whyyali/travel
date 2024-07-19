@@ -5,15 +5,7 @@ import { AntDesign, Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import ReusableText from '@/components/resuable/text';
 import ReusableTile from '@/components/resuable/tile';
-
-interface Item {
-    _id: string,
-    title: string,
-    location: string,
-    rating: string | number,
-    review: string | number,
-    image: any
-}
+import { Item } from '@/utils/utils';
 
 const Recommedations = () => {
     const { recommendations, isLoading } = useFetchRecommendations();

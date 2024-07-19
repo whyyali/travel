@@ -6,25 +6,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { AntDesign, Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import ReusableTile from '@/components/resuable/tile';
-
-interface Hotel {
-    title: string
-}
-
-interface Item {
-    _id: string,
-    title: string,
-    location: string,
-    rating: string | number,
-    review: string | number,
-    image: any
-}
+import {Item, Hotel} from "@/utils/utils";
 
 const FindHotels = () => {
     const [searchKey, setSearchKey] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [isNotFound, setIsNotFound] = useState(false);
-
 
     const { hotels } = useFetchHotels();
 

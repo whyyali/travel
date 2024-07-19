@@ -2,15 +2,7 @@ import { FlatList, View, ListRenderItem } from 'react-native'
 import ReusableTile from './resuable/tile'
 import { router } from 'expo-router';
 import React from 'react';
-
-type Item = {
-    _id: string,
-    title: string,
-    location: string,
-    rating: string | number,
-    review: string | number,
-    image: any
-  };
+import { Item } from '@/utils/utils';
   
 type PopularListProps = {
   data: Item[];

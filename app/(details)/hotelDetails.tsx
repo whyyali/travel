@@ -12,27 +12,7 @@ import HotelMap from '@/components/hotel/hotelMap';
 import Review from '@/components/review/review';
 import { useFetchReviews } from "@/data/fetchData";
 import WriteReview from '@/components/review/writeReview';
-
-interface Hotel {
-  _id: string,
-  title: string,
-  location: string,
-  rating: string | number,
-  review: string | number,
-  image: any,
-  country: string,
-  country_id: string,
-  description: string,
-  price: any,
-  availability: {
-    start: any,
-    end: any,
-  },
-  coordinates:{
-    latitude: any,
-    longitude: any
-  }
-}
+import { Hotel } from "@/utils/utils";
 
 const HotelDetails = () => {
   const { item } = useLocalSearchParams();
@@ -112,7 +92,7 @@ const HotelDetails = () => {
               <ReusableText text={`${renderDate(hotel.availability.end)} - ${renderDate(hotel.availability.start)}`} color={COLORS.gray} size={SIZES.medium} family={"300"} />
             </View>
             <View style={{ width: 10, }} />
-            <ReusableButton title='Select' width={(SIZES.width - 60) / 2.2} bgColor={COLORS.green} textColor={COLORS.white} onPress={() => { }} borderWidth={1} borderColor={COLORS.black} />
+            <ReusableButton title='Select' width={(SIZES.width - 60) / 2.2} bgColor={COLORS.green} textColor={COLORS.white} onPress={() => {}} borderWidth={1} borderColor={COLORS.black} />
           </View>
         </View>
 
