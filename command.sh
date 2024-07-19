@@ -6,3 +6,4 @@ npm install @react-navigation/bottom-tabs
 expo install react-native-svg
 npm install react-native-maps
 npm install react-native-maps-directions
+npm install expo-image-picker

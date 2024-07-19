@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { router, useLocalSearchParams } from "expo-router"
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ReusableBar from '@/components/resuable/bar';
@@ -6,10 +6,12 @@ import { COLORS, SIZES } from '@/constants/theme';
 import ReusableImage from '@/components/resuable/image';
 import ReusableText from '@/components/resuable/text';
 import ReusableDescription from '@/components/resuable/description';
-import { Feather } from '@expo/vector-icons';
 import ReusableButton from '@/components/resuable/button';
 import Star from '@/components/star';
 import HotelMap from '@/components/hotel/hotelMap';
+import Review from '@/components/review/review';
+import { useFetchReviews } from "@/data/fetchData";
+import WriteReview from '@/components/review/writeReview';
 
 interface Hotel {
   _id: string,
@@ -49,6 +51,10 @@ const HotelDetails = () => {
     latitudeDelta: 0.01,
     longitudeDelta: 0.01,
   }
+
+  const id = hotel._id
+
+  const { reviews } = useFetchReviews(id)
 
   return (
     <SafeAreaView style={{ marginHorizontal: 10, backgroundColor: "#f3f4f8" }}>
@@ -96,8 +102,8 @@ const HotelDetails = () => {
               <ReusableText text={"Reviews"} color={COLORS.black} size={SIZES.large} family={"400"} />
             </View>
             <View style={{ height: 15 }} />
-            {/* review component here */}
-            {/* comment  */}
+            <Review reviews={reviews} />
+            <WriteReview placeId={hotel._id} />
           </View>
 
           <View style={[styles.wrapper, styles.bottom]}>

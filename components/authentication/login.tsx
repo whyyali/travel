@@ -7,6 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { BACKEND_URL } from '@env';
 import { router } from 'expo-router';
 import ReusableButton from '../resuable/button';
+import { useUser } from '@/constants/userContext';
 
 interface FormValues {
     email: string;
@@ -18,7 +19,7 @@ const validationSchema = Yup.object().shape({
     email: Yup.string().email("Provide a valid email").required("Required"),
 })
 
-const handleLogin = async (values: FormValues, resetForm: () => void) => {
+const handleLogin = async (values: FormValues, resetForm: () => void, setUserDetails: (user: any) => void) => {
     const { email, password } = values;
     try {
         const response = await fetch(`${BACKEND_URL}/api/login`, {
@@ -32,7 +33,8 @@ const handleLogin = async (values: FormValues, resetForm: () => void) => {
         const data = await response.json();
 
         if (data.status) {
-            Alert.alert('Login Successful', 'Welcome back!', [{ text: 'OK' }]);
+            // Alert.alert('Login Successful', 'Welcome back!', [{ text: 'OK' }]);
+            setUserDetails({ id: data.id, token: data.token });
             router.navigate("(tab)/home")
             resetForm();
         } else {
@@ -46,9 +48,10 @@ const handleLogin = async (values: FormValues, resetForm: () => void) => {
 
 const Login = () => {
     const [obsecureText, setObsecureText] = useState(false);
+    const { setUserDetails } = useUser()
   return (
     <View style={styles.container}>
-      <Formik initialValues={{email: "", password: ""}}  validationSchema={validationSchema} onSubmit={(values: FormValues, { resetForm }: FormikHelpers<FormValues>) => handleLogin(values, resetForm)}>
+      <Formik initialValues={{email: "", password: ""}}  validationSchema={validationSchema} onSubmit={(values: FormValues, { resetForm }: FormikHelpers<FormValues>) => handleLogin(values, resetForm, setUserDetails)}>
         {({handleChange, touched, handleSubmit, values, errors, isValid, setFieldTouched}) => (
             <View>
                 <View style={styles.wrapper}>

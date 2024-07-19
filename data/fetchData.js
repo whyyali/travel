@@ -168,3 +168,25 @@ export const useFetchHotelById = (id) => {
 
     return { hotel, hotelAvailabilityStart, hotelAvailabilityEnd };
 };
+
+export const useFetchReviews = (id) =>{
+    const [reviews, setReviews] = useState([]);
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/reviews/${id}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setReviews(data);
+                 }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, [id]);
+
+    return { reviews }
+} 

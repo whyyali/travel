@@ -1,22 +1,28 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useState, useEffect, useMemo } from 'react';
-import MapViewDirections from "react-native-maps-directions";
 import { useLocalSearchParams } from 'expo-router';
 
 type Destination = {
   id: string,
   title: string,
-  latitude: any,
-  longitude: any,
+  latitude: number,
+  longitude: number,
   latitudeDelta: number,
   longitudeDelta: number,
 };
 
 const Location = () => {
   const { coordinates } = useLocalSearchParams();
-  
-  const coordinate: Destination = useMemo(() => JSON.parse(coordinates as string), [coordinates]);
+
+  const coordinate: Destination | null = useMemo(() => {
+    try {
+      return coordinates ? JSON.parse(coordinates as string) : null;
+    } catch (error) {
+      console.error('Error parsing coordinates:', error);
+      return null;
+    }
+  }, [coordinates]);
 
   const currentLocation = {
     latitude: 30.6682,
@@ -31,12 +37,17 @@ const Location = () => {
   useEffect(() => {
     if (coordinate) {
       setDestination(coordinate);
+    } else {
+      console.log("coordinates are missing")
     }
   }, [coordinate]);
 
   return (
     <View style={{ flex: 1 }}>
-      <MapView style={StyleSheet.absoluteFillObject} initialRegion={currentLocation}>
+      <MapView
+        style={StyleSheet.absoluteFillObject}
+        initialRegion={currentLocation}
+      >
         {destination ? (
           <>
             <Marker coordinate={currentLocation} title={currentLocation.title} />

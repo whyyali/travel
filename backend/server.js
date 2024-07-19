@@ -8,6 +8,7 @@ const countryRouter = require('./routes/country');
 const placeRouter = require('./routes/place');
 const hotelRouter = require('./routes/hotel');
 const reviewRouter = require('./routes/review');
+const verifyRouter = require('./routes/verify');
 const app = express()
 const port = 5080
 
@@ -28,6 +29,7 @@ app.use('/api/countries', countryRouter);
 app.use('/api/places', placeRouter);
 app.use('/api/hotels', hotelRouter);
 app.use('/api/reviews', reviewRouter);
+app.use('/api/code', verifyRouter);
 
 app.get('/', (req, res) => res.send('Hello World!'))
 app.listen(process.env.PORT || port, () => console.log(`app listening on port ${process.env.PORT}!`))
